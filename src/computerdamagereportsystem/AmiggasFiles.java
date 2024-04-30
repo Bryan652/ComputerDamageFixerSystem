@@ -13,30 +13,46 @@ import java.io.FileWriter;
 public class AmiggasFiles {
 
     public void confidential() throws FileNotFoundException, IOException {
-        String pathDirectory = "ComputerDamageFixerSystem-master/AmiggasConfidential.txt";
-        File amiggas = new File(pathDirectory);
-        String newFileName = "source.txt";
+        String primaryPathDirectory = "C:\\Users\\Harayku\\Downloads\\ComputerDamageFixerSystem-master\\src\\AmiggasConfidential.txt";
 
-        File newFile = new File(pathDirectory, newFileName);
-        try (FileReader fileReader = new FileReader(amiggas); FileWriter fileWriter = new FileWriter(newFileName)) {
-            InputStream in = new FileInputStream(amiggas);
-            OutputStream out = new FileOutputStream(newFileName);
+        File AmiggasConfidential = new File(primaryPathDirectory);
 
-            if (newFile.createNewFile()) {
-                System.out.println("New file created successfully.");
+        try (InputStream inputStream = new FileInputStream(AmiggasConfidential); 
+                OutputStream outputStream = new FileOutputStream(AmiggasConfidential)) {
+
+            if (AmiggasConfidential.createNewFile()) {
+                System.out.println("File created successfully.");
             } else {
-                System.out.println("File already exists in the directory.");
+                System.out.println("File already exists.");
             }
 
-            int character;
-            while ((character = fileReader.read()) != -1) {
-                fileWriter.write(character);
-            }
+            FileWriter writer = new FileWriter(AmiggasConfidential);
+            System.out.println("READING FILE...");
+            writer.write("Ang user ay admin tas admin123 ang password waw confidential\n");
+            writer.close();
 
-            int c;
-            while ((c = in.read()) != -1) {
-                out.write(c);
+            FileReader reader = new FileReader(AmiggasConfidential);
+            int data = reader.read();
+            while (data != -1) {
+                System.out.print((char) data);
+                data = reader.read();
             }
+            reader.close();
+
+            int byteData;
+            while ((byteData = inputStream.read()) != -1) {
+
+            }
+            // Process the byte data
+            System.out.println("Processed Data Finished!");
+
+            // Write data to the file
+            String newData = "TWICE FOREVER<3";
+            byte[] convertBytes = newData.getBytes(); // Convert string to bytes
+            outputStream.write(convertBytes);
+
+            System.out.println("Data written successfully.");
+
         } catch (IOException e) {
             System.err.println("Error: " + e.getMessage());
         }
