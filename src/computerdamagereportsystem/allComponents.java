@@ -1,6 +1,7 @@
 
 package computerdamagereportsystem;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -196,8 +197,16 @@ class reports extends school{
 
 public class allComponents {
     reports reports1 = new reports();
-    
+    Login login1 = new Login();
+    AmiggasFiles amiggasF = new AmiggasFiles();
     {
+        try {
+            amiggasF.confidential();
+        } catch (Exception e) {
+            
+        }
+        
+        login1.signIn();
         reports1.roomComponents();
         reports1.students();
         reports1.studentReports();
